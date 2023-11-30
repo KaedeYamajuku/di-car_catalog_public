@@ -36,3 +36,4 @@ composer install
 ## ■その他
 * windows特有のnpm関連のバグ対策としてnode_modulesをコンテナ内に展開する処理をdocker-compose内に記載してあります。
 必要に応じて削除してください。
+* 
