@@ -36,7 +36,7 @@
         </div>
 
         <div class="pt-5">
-            @if($car->users->where('id', \Illuminate\Support\Facades\Auth::id() ?? 1)->isEmpty())
+            @if($car->users->where('id', \Illuminate\Support\Facades\Auth::id())->isEmpty())
                 {{Form::button('いいね', ['class' => 'btn btn-outline-success favoriteButton', 'data-favorite' => 1])}}
             @else
                 {{Form::button('いいね済み', ['class' => 'btn btn-success favoriteButton', 'data-favorite' => 0])}}
@@ -54,7 +54,7 @@
                 url: "{{ route('cars.favorite') }}",
                 data: {
                     'car_id': {{ $car->id }},
-                    'user_id': {{ \Illuminate\Support\Facades\Auth::id() ?? 1 }},
+                    'user_id': {{ \Illuminate\Support\Facades\Auth::id()}},
                     'is_favorite': $button.data('favorite'),
                 },
                 success: function () {
