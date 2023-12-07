@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/cars', App\Http\Actions\Car\IndexAction::class)->name('cars.index');
+Route::get('/cars/{car}', App\Http\Actions\Car\ShowAction::class)->name('cars.show');
 
 Auth::routes();
 
