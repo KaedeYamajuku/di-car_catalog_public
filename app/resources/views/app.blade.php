@@ -26,9 +26,9 @@
             </ul>
 
             <div class="text-end">
-                {{--                {{ Form::open(['url' => route('logout')]) }}--}}
-                {{--                {{ Form::submit('ログアウト', ['class' => 'btn btn-outline-light me-2']) }}--}}
-                {{--                {{ Form::close() }}--}}
+                {{ Form::open(['url' => route('logout')]) }}
+                {{ Form::submit('ログアウト', ['class' => 'btn btn-outline-light me-2']) }}
+                {{ Form::close() }}
             </div>
         </div>
     </div>
