@@ -62,7 +62,7 @@
             @foreach($cars as $car)
                 <tr>
                     <th scope="row">
-                        {{ link_to_route('cars.index', $car->id, ['car' => $car->id]) }}
+                        {{ link_to_route('cars.show', $car->id, ['car' => $car->id]) }}
                     </th>
                     <td>{{ $car->name }}</td>
                     <td>{{ $car->cc }}cc</td>
