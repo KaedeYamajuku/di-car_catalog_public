@@ -35,7 +35,44 @@
             <div class="col-4"><img src="{{ $car->image_url }}"></div>
         </div>
 
+        <div class="pt-5">
+            @if($car->users->where('id', \Illuminate\Support\Facades\Auth::id() ?? 1)->isEmpty())
+                {{Form::button('いいね', ['class' => 'btn btn-outline-success favoriteButton', 'data-favorite' => 1])}}
+            @else
+                {{Form::button('いいね済み', ['class' => 'btn btn-success favoriteButton', 'data-favorite' => 0])}}
+            @endif
+        </div>
+
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $('.favoriteButton').on('click', function () {
+            $button = $(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('cars.favorite') }}",
+                data: {
+                    'car_id': {{ $car->id }},
+                    'user_id': {{ \Illuminate\Support\Facades\Auth::id() ?? 1 }},
+                    'is_favorite': $button.data('favorite'),
+                },
+                success: function () {
+                    if($button.data('favorite') === 1){
+                        $button.removeClass('btn-outline-success');
+                        $button.addClass('btn-success');
+                        $button.text('いいね済み');
+                        $button.data('favorite', 0);
+                    } else {
+                        $button.removeClass('btn-success');
+                        $button.addClass('btn-outline-success');
+                        $button.text('いいね');
+                        $button.data('favorite', 1);
+                    }
+                }
+            })
+        })
+    </script>
 @endsection
 
 
